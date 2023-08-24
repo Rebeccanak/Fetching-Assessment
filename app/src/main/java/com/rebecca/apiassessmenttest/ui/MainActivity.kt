@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     val postsViewModel: PostsViewModel by viewModels()
 
 
-    private lateinit var productAdapter: PostsAdapter
+    private lateinit var postsAdapter: PostsAdapter
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,24 +23,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val recyclerView: RecyclerView = binding.rvPosts
         val gridLayoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = gridLayoutManager
-        productAdapter = PostsAdapter(emptyList())
-        recyclerView.adapter = productAdapter
+        postsAdapter = PostsAdapter(emptyList())
+        recyclerView.adapter = postsAdapter
     }
 
     override fun onResume() {
         super.onResume()
-//        displayProducts(productsLists)
+
         postsViewModel.fetchPosts()
         postsViewModel.postsLiveData.observe(this, Observer { postsList ->
 var postAdapt=PostsAdapter(postsList?: emptyList())
 binding.rvPosts.layoutManager=LinearLayoutManager(this@MainActivity)
             binding.rvPosts.adapter=postAdapt
-//            if (postsList != null) {
-//                productAdapter.(postsList)
-//            }
+
             Toast.makeText(
                 baseContext,
                 "Fetched ${postsList?.size} products",
