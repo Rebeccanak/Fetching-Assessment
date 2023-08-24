@@ -6,12 +6,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rebecca.apiassessmenttest.databinding.ActivityMainBinding
 import com.rebecca.apiassessmenttest.viewModels.PostsViewModel
 
 class MainActivity : AppCompatActivity() {
-
     val postsViewModel: PostsViewModel by viewModels()
 
 
@@ -34,15 +34,16 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 //        displayProducts(productsLists)
         postsViewModel.fetchPosts()
-        postsViewModel.postsLiveData.observe(this, Observer { productList ->
-
-
-            if (productList != null) {
-                productAdapter.updatePosts(productList)
-            }
+        postsViewModel.postsLiveData.observe(this, Observer { postsList ->
+var postAdapt=PostsAdapter(postsList?: emptyList())
+binding.rvPosts.layoutManager=LinearLayoutManager(this@MainActivity)
+            binding.rvPosts.adapter=postAdapt
+//            if (postsList != null) {
+//                productAdapter.(postsList)
+//            }
             Toast.makeText(
                 baseContext,
-                "Fetched ${productList?.size} products",
+                "Fetched ${postsList?.size} products",
                 Toast.LENGTH_LONG
             ).show()
 

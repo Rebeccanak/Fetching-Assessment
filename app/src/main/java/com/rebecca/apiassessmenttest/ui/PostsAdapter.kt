@@ -6,22 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rebecca.apiassessmenttest.databinding.PostsListBinding
 import com.rebecca.apiassessmenttest.models.Posts
 
-//class PostsAdapter {
-//}
-class PostsAdapter( private var postsList: List<Posts>) :
-    RecyclerView.Adapter<PostsAdapter.PostsViewHolder>()
-
+class PostsAdapter(var postsList: List<Posts>) : RecyclerView.Adapter<PostsAdapter.PostsViewHolder>()
 
 {
-    fun updatePosts(newProducts: List<Posts>) {
-        postsList = newProducts
-        notifyDataSetChanged()
-    }
+//    fun updatePosts(newProducts: List<Posts>) {
+//        postsList = newProducts
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {
-        val binding = PostsListBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
+        val binding = PostsListBinding.inflate(LayoutInflater.from(parent.context), parent,
             false
         )
         return PostsViewHolder(binding)
