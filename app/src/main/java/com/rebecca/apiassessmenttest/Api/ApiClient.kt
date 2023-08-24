@@ -10,6 +10,7 @@ object ApiClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun <T> buildClient(apiInterface: Class<T>):T {
-        return  retrofit.create(apiInterface)
+    fun <T> buildClient(apiInterface: Class<T>): T {
+        return retrofit.create(apiInterface)
+    }
 }

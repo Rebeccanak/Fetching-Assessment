@@ -1,7 +1,13 @@
 package com.rebecca.apiassessmenttest.Api
 
+import com.rebecca.apiassessmenttest.models.PostsResponse
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.POST
+
 interface ApiInterface {
-    @POST("/posts")
-    suspend fun getProducts(): Response<ProductResponse>
+    @GET("/posts")
+    suspend fun getPost(): Response<PostsResponse>
+    fun getPosts()
     //
 }
